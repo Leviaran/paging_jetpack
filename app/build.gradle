@@ -21,6 +21,17 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            buildConfigField "String", "API_KEY", '"333ae9c349214b93a50d506f48f1c7bf"'
+        }
+    }
+
+    dataBinding{
+        enabled = true
+    }
+
+    androidExtensions{
+        experimental = true
     }
 }
 
