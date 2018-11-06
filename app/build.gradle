@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.singletondev.id.pagination"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Deps.kotlinStdLib
+    implementation Deps.supportAnnotations
+    implementation Deps.appCompat
+    implementation Deps.constraintLayout
+    implementation Deps.recyclerView
+    implementation Deps.design
+    implementation Deps.cardView
+
+    implementation Deps.lifecycle
+    implementation Deps.lifeCyclerCom
+    implementation Deps.retrofit
+    implementation Deps.rxAdapter
+    implementation Deps.gson
+    implementation Deps.logginInt
+    implementation Deps.okHttp
+    implementation Deps.rxAndroid
+    implementation Deps.stetho
+    implementation Deps.picasso
+    testImplementation Deps.mockito
+    implementation Deps.roundedImage
+
+    implementation Deps.paging
+    implementation Deps.multidex
+
+    implementation Deps.dagger_core
+    implementation Deps.dagger_android_support
+    implementation Deps.dagger_android_core
+    kapt Deps.dagger_compiler
+    kapt Deps.dagger_processor
+}
