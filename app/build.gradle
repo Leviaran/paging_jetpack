@@ -22,7 +22,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField "String", "API_KEY", '"333ae9c349214b93a50d506f48f1c7bf"'
+            buildConfigField "String", "API_KEY", '"61569e6e-7690-491d-b4fc-09ed040cca54"'
         }
     }
 
@@ -32,6 +32,10 @@ android {
 
     androidExtensions{
         experimental = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
