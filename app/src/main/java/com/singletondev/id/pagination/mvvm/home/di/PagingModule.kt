@@ -9,13 +9,8 @@ import dagger.Provides
 @Module
 class PagingModule {
 
-    @Provides
-    fun providePagingDataSource(apiService : Endpoint) : PagingDataSource {
-        return PagingDataSource(apiService)
-    }
+    //TODO ProvidePaginDataSource
 
-    @Provides
-    fun providePagingDataFactory(pagingDataSource: PagingDataSource) : PagingDataFactory{
-        return PagingDataFactory(pagingDataSource)
-    }
+    //TODO ProvidePagingDataFactory
+
 }

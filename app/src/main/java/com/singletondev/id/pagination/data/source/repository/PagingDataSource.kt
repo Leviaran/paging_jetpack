@@ -18,55 +18,6 @@ import javax.inject.Inject
 
 class PagingDataSource @Inject constructor(val apiService : Endpoint) : PageKeyedDataSource<Long, Result>(){
 
-    var initialState = MutableLiveData<NetworkState>()
-    var networkState = MutableLiveData<NetworkState>()
-
-    override fun loadInitial(params: LoadInitialParams<Long>, callback: LoadInitialCallback<Long, Result>) {
-        initialState.postValue(NetworkState.LOADING)
-        networkState.postValue(NetworkState.LOADING)
-
-       apiService.getNewsApi(BuildConfig.API_KEY)
-           .subscribeOn(Schedulers.io())
-           .observeOn(AndroidSchedulers.mainThread())
-           .subscribe(object : SingleObserver<BaseModel>{
-               override fun onSuccess(value: BaseModel?) {
-                   callback.onResult(value!!.response.results, null, 2L)
-                   initialState.postValue(NetworkState.SUCCESS)
-                   networkState.postValue(NetworkState.SUCCESS)
-               }
-
-               override fun onSubscribe(d: Disposable?) {
-
-               }
-
-               override fun onError(e: Throwable?) {
-                   networkState.postValue(NetworkState.FAILED)
-               }
-           })
-    }
-
-    override fun loadAfter(params: LoadParams<Long>, callback: LoadCallback<Long, Result>) {
-        networkState.postValue(NetworkState.LOADING)
-
-        apiService.getNewsApi(BuildConfig.API_KEY)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<BaseModel>{
-                override fun onSuccess(value: BaseModel?) {
-                    networkState.postValue(NetworkState.SUCCESS)
-                    callback.onResult(value!!.response.results, (params.key+1))
-                }
-
-                override fun onSubscribe(d: Disposable?) {
-                }
-
-                override fun onError(e: Throwable?) {
-                    networkState.postValue(NetworkState.FAILED)
-                }
-            })
-    }
-
-    override fun loadBefore(params: LoadParams<Long>, callback: LoadCallback<Long, Result>) {
-    }
+   //TODO create consume restApi here
 
 }

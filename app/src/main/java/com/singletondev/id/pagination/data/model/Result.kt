@@ -31,16 +31,6 @@ data class Result(
 ){
     companion object {
 
-        var DIFFUTIL_CALLBACK = object : DiffUtil.ItemCallback<Result>() {
-
-            override fun areItemsTheSame(p0: Result, p1: Result): Boolean {
-                return p0.id == p1.id
-            }
-
-            override fun areContentsTheSame(p0: Result, p1: Result): Boolean {
-                return p0.id == p1.id
-            }
-        }
-
+       //TODO create DIFFUTIL
     }
 }

@@ -22,22 +22,10 @@ class PaginViewModel @Inject constructor(val pagingDataFactory : PagingDataFacto
         initData()
     }
 
+    //TODO create networkState Transformation.switmap,LivedPagedListBuilder  and create pageLIstConfig
     private fun initData(){
 
-        executor = Executors.newFixedThreadPool(5)
 
-        networkState = Transformations.switchMap(pagingDataFactory.mutableLiveData){
-            it.networkState
-        }
-
-        val pageListConfig = (PagedList.Config.Builder())
-            .setEnablePlaceholders(false)
-            .setInitialLoadSizeHint(10)
-            .setPageSize(10).build()
-
-        articleLiveData = (LivePagedListBuilder(pagingDataFactory, pageListConfig))
-            .setFetchExecutor(executor)
-            .build()
 
     }
 

@@ -9,74 +9,56 @@ import com.singletondev.id.pagination.databinding.LoadingBinding
 import com.singletondev.id.pagination.utils.NetworkState
 import com.singletondev.id.pagination.data.model.Result
 
+
+
 class PagingAdapter : PagedListAdapter<Result, RecyclerView.ViewHolder>(Result.DIFFUTIL_CALLBACK){
 
     private val TYPE_PROGRESS = 0
     private val TYPE_ITEM = 1
     private var networkState : NetworkState? = null
 
+
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RecyclerView.ViewHolder {
-        val layoutInflater = LayoutInflater.from(p0.context)
-        return if (p1 == TYPE_PROGRESS){
-            LoadingItemViewHolder(LoadingBinding.inflate(layoutInflater, p0, false))
-        } else {
-            NewsItemViewHolder(ItemPagingListBinding.inflate(layoutInflater, p0, false))
-        }
+        //TODO create two ViewHolder
     }
 
+
     override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
-        if (p0 is NewsItemViewHolder){
-            p0.bindItem(getItem(p1))
-        } else if (p0 is LoadingItemViewHolder) {
-            p0.bindItem(networkState)
-        }
+        //TODO create two BindViewHolder
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (hasExtraRow() && position == itemCount -1){
-            TYPE_PROGRESS
-        } else {
-            TYPE_ITEM
-        }
+        //TODO condition if Progress and if Item with hasExtraRow and Position -1
     }
 
+    //TODO create function hasExtraRow based networkState non Success
     private fun hasExtraRow() : Boolean{
-        networkState.let {
-            return networkState != NetworkState.SUCCESS
-        }
+
     }
 
+    //TODO setNetworkState compare networkState and ExtraRow two each other
     fun setNetworkState(newNetworkState: NetworkState){
-        val previousNetworkState = this.networkState
-        val previousExtraRow = hasExtraRow()
-        this.networkState = newNetworkState
-        val newExtraRow = hasExtraRow()
 
+
+        //TODO make condition if previousExtraRow different to newExtraRow to notifiy remove and insert
         if (previousExtraRow != newExtraRow){
-            if (previousExtraRow){
-                notifyItemRemoved(itemCount)
-            } else {
-                notifyItemInserted(itemCount)
-            }
+
         } else if (newExtraRow && previousNetworkState != newNetworkState){
-            notifyItemChanged(itemCount)
+            //TODO make condition if previousExtraRow different to newExtraRow to notifiy remove and insert
         }
     }
 
+    //TODO create NewsViewHolder
     inner class NewsItemViewHolder(var view : ItemPagingListBinding) : RecyclerView.ViewHolder(view.root){
 
-        fun bindItem(item : Result?){
-            view.item = item
-            view.executePendingBindings()
-        }
+
     }
 
+    //TODO create LoadingViewHolder
     inner class LoadingItemViewHolder(var view : LoadingBinding) : RecyclerView.ViewHolder(view.root){
 
-        fun bindItem(networkState: NetworkState?){
-            view.networkState = networkState
-            view.executePendingBindings()
-        }
+
     }
 
 }
