@@ -1,5 +1,7 @@
 package com.singletondev.id.pagination.data.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.v7.util.DiffUtil
 import com.google.gson.annotations.SerializedName
 
@@ -26,10 +28,11 @@ data class Result(
     val webTitle: String,
     @SerializedName("webUrl")
     val webUrl: String
-) {
+){
     companion object {
 
-        var DIFFUTIL_CALLBACK = object : DiffUtil.ItemCallback<Result>(){
+        var DIFFUTIL_CALLBACK = object : DiffUtil.ItemCallback<Result>() {
+
             override fun areItemsTheSame(p0: Result, p1: Result): Boolean {
                 return p0.id == p1.id
             }
@@ -37,7 +40,7 @@ data class Result(
             override fun areContentsTheSame(p0: Result, p1: Result): Boolean {
                 return p0.id == p1.id
             }
-
         }
+
     }
 }

@@ -4,10 +4,10 @@ import android.arch.paging.PagedListAdapter
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.singletondev.id.pagination.data.model.Result
 import com.singletondev.id.pagination.databinding.ItemPagingListBinding
 import com.singletondev.id.pagination.databinding.LoadingBinding
 import com.singletondev.id.pagination.utils.NetworkState
+import com.singletondev.id.pagination.data.model.Result
 
 class PagingAdapter : PagedListAdapter<Result, RecyclerView.ViewHolder>(Result.DIFFUTIL_CALLBACK){
 

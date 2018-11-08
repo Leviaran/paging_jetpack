@@ -3,9 +3,9 @@ package com.singletondev.id.pagination.data.source.repository
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.PageKeyedDataSource
 import android.util.Log
-import com.singletondev.id.pagination.BuildConfig
-import com.singletondev.id.pagination.base.BaseApiModel
 import com.singletondev.id.pagination.data.model.Result
+import com.singletondev.id.pagination.BuildConfig
+import com.singletondev.id.pagination.data.model.BaseModel
 import com.singletondev.id.pagination.data.source.remote.Endpoint
 import com.singletondev.id.pagination.utils.NetworkState
 import io.reactivex.SingleObserver
@@ -28,10 +28,9 @@ class PagingDataSource @Inject constructor(val apiService : Endpoint) : PageKeye
        apiService.getNewsApi(BuildConfig.API_KEY)
            .subscribeOn(Schedulers.io())
            .observeOn(AndroidSchedulers.mainThread())
-           .subscribe(object : SingleObserver<BaseApiModel<Result>>{
-               override fun onSuccess(value: BaseApiModel<Result>?) {
-                   Log.e("coba", value?.toString())
-//                   callback.onResult(value!!.results.toMutableList(), null, 2L)
+           .subscribe(object : SingleObserver<BaseModel>{
+               override fun onSuccess(value: BaseModel?) {
+                   callback.onResult(value!!.response.results, null, 2L)
                    initialState.postValue(NetworkState.SUCCESS)
                    networkState.postValue(NetworkState.SUCCESS)
                }
@@ -52,10 +51,10 @@ class PagingDataSource @Inject constructor(val apiService : Endpoint) : PageKeye
         apiService.getNewsApi(BuildConfig.API_KEY)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<BaseApiModel<Result>>{
-                override fun onSuccess(value: BaseApiModel<Result>?) {
+            .subscribe(object : SingleObserver<BaseModel>{
+                override fun onSuccess(value: BaseModel?) {
                     networkState.postValue(NetworkState.SUCCESS)
-                    callback.onResult(value!!.results, (params.key+1))
+                    callback.onResult(value!!.response.results, (params.key+1))
                 }
 
                 override fun onSubscribe(d: Disposable?) {

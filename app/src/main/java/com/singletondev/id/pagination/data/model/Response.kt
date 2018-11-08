@@ -1,9 +1,24 @@
 package com.singletondev.id.pagination.data.model
 
 import com.google.gson.annotations.SerializedName
-import com.singletondev.id.pagination.base.BaseApiModel
 
 data class Response(
-    @SerializedName("response")
-    val response: BaseApiModel<Unit>
+    @SerializedName("currentPage")
+    val currentPage: Int,
+    @SerializedName("orderBy")
+    val orderBy: String,
+    @SerializedName("pageSize")
+    val pageSize: Int,
+    @SerializedName("pages")
+    val pages: Int,
+    @SerializedName("results")
+    val results: List<Result>,
+    @SerializedName("startIndex")
+    val startIndex: Int,
+    @SerializedName("status")
+    val status: String,
+    @SerializedName("total")
+    val total: Int,
+    @SerializedName("userTier")
+    val userTier: String
 )
