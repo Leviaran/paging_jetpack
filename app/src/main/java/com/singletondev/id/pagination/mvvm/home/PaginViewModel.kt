@@ -14,9 +14,13 @@ import javax.inject.Inject
 
 class PaginViewModel @Inject constructor(val pagingDataFactory : PagingDataFactory) : ViewModel() {
 
-    private lateinit var networkState : LiveData<NetworkState>
-    private lateinit var articleLiveData : LiveData<PagedList<Result>>
+     lateinit var networkState : LiveData<NetworkState>
+     lateinit var articleLiveData : LiveData<PagedList<Result>>
     private lateinit var executor : Executor
+
+    fun start(){
+        initData()
+    }
 
     private fun initData(){
 

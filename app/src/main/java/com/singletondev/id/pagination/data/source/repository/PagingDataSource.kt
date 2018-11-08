@@ -2,6 +2,7 @@ package com.singletondev.id.pagination.data.source.repository
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.PageKeyedDataSource
+import android.util.Log
 import com.singletondev.id.pagination.BuildConfig
 import com.singletondev.id.pagination.base.BaseApiModel
 import com.singletondev.id.pagination.data.model.Result
@@ -29,7 +30,8 @@ class PagingDataSource @Inject constructor(val apiService : Endpoint) : PageKeye
            .observeOn(AndroidSchedulers.mainThread())
            .subscribe(object : SingleObserver<BaseApiModel<Result>>{
                override fun onSuccess(value: BaseApiModel<Result>?) {
-                   callback.onResult(value!!.results.toMutableList(), null, 2L)
+                   Log.e("coba", value?.toString())
+//                   callback.onResult(value!!.results.toMutableList(), null, 2L)
                    initialState.postValue(NetworkState.SUCCESS)
                    networkState.postValue(NetworkState.SUCCESS)
                }
