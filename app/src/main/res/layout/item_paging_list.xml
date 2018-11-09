@@ -3,13 +3,13 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data>
+    <!--<data>-->
 
-        <variable
-            name="item"
-            type="com.singletondev.id.pagination.data.model.Result"/>
+        <!--<variable-->
+            <!--name="item"-->
+            <!--type="com.singletondev.id.pagination.data.model.Result"/>-->
 
-    </data>
+    <!--</data>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,8 +19,7 @@
         <TextView
             android:id="@+id/tv_news_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{item.webTitle}"/>
+            android:layout_height="wrap_content"/>
 
 
     </LinearLayout>
